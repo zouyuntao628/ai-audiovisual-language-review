@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>术语字典 | AI 视听语言研究综述</title>
+  <meta name="description" content="AI 视听语言研究常用术语字典：shot length、ASL、景别、镜头边界、多模态学习、VLM 等。">
+  <style>
+    :root {
+      --ink: #18212b;
+      --muted: #5f6d7a;
+      --line: #dce4ea;
+      --deep: #173547;
+      --brand: #1c7d76;
+      --warm: #fff5ea;
+      --rose: #f8edf3;
+      --pale: #e8f3f1;
+      --shadow: 0 22px 54px rgba(22, 38, 54, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(28, 125, 118, 0.14), transparent 30%),
+        radial-gradient(circle at 92% 10%, rgba(188, 122, 54, 0.16), transparent 28%),
+        #f7fafb;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 26px 20px;
+      background: var(--deep);
+      color: #edf7f5;
+      overflow-y: auto;
+    }
+
+    .brand {
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .brand h1 {
+      margin: 0 0 7px;
+      font-size: 19px;
+      line-height: 1.25;
+    }
+
+    .brand p {
+      margin: 0;
+      color: #b7d0ce;
+      font-size: 13px;
+    }
+
+    .nav {
+      display: grid;
+      gap: 6px;
+      margin-top: 22px;
+    }
+
+    .nav a {
+      display: block;
+      color: #dbecea;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .nav a:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .main {
+      min-width: 0;
+      padding: 44px;
+    }
+
+    .hero {
+      max-width: 1040px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(28,125,118,0.1);
+      color: var(--brand);
+      border: 1px solid rgba(28,125,118,0.18);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    h2 {
+      margin: 18px 0 12px;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 860px;
+    }
+
+    .index-panel,
+    .term {
+      max-width: 1040px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 12px 34px rgba(22,38,54,0.07);
+    }
+
+    .index-panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: var(--pale);
+      color: #14655f;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .term {
+      padding: 22px;
+      margin-bottom: 14px;
+      scroll-margin-top: 22px;
+    }
+
+    .term h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .term .alias {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .term p {
+      margin: 9px 0;
+    }
+
+    .term strong {
+      color: #263b48;
+    }
+
+    .note {
+      padding: 12px 14px;
+      background: var(--warm);
+      border: 1px solid #ecd4b8;
+      border-radius: 8px;
+      color: #60431f;
+      margin-top: 12px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .links a {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: var(--rose);
+      color: #81435f;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    footer {
+      max-width: 1040px;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 18px 0 4px;
+    }
+
+    @media (max-width: 900px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        position: static;
+        height: auto;
+      }
+
+      .main {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">
+        <h1>术语字典</h1>
+        <p>AI 视听语言研究常用概念</p>
+      </div>
+      <nav class="nav" aria-label="术语导航">
+        <a href="index.html">返回综述首页</a>
+        <a href="#shot-length">shot length / 镜头长度</a>
+        <a href="#asl">ASL / 平均镜头长度</a>
+        <a href="#shot-scale">shot scale / 景别</a>
+        <a href="#shot-boundary">shot boundary / 镜头边界</a>
+        <a href="#camera-motion">camera motion / 镜头运动</a>
+        <a href="#optical-flow">optical flow / 光流</a>
+        <a href="#shot-reverse-shot">shot-reverse-shot / 正反打</a>
+        <a href="#continuity-editing">continuity editing / 连续性剪辑</a>
+        <a href="#color-histogram">color histogram / 色彩直方图</a>
+        <a href="#editing-rhythm">editing rhythm / 剪辑节奏</a>
+        <a href="#multimodal-learning">multimodal learning / 多模态学习</a>
+        <a href="#audio-video-text">audio-video-text / 声画文三模态</a>
+        <a href="#vlm">VLM / 视觉语言模型</a>
+        <a href="#benchmark">benchmark / 基准评测</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="hero">
+        <span class="eyebrow">Glossary</span>
+        <h2>AI 视听语言研究术语字典</h2>
+        <p>这个字典把综述中高频出现的英文术语和影视学概念放在一起解释。每个词条都说明它是什么意思、为什么重要、在研究中怎么用，以及适合继续学习的资料。</p>
+      </header>
+
+      <section class="index-panel">
+        <div class="chips">
+          <a class="chip" href="#shot-length">shot length</a>
+          <a class="chip" href="#asl">ASL</a>
+          <a class="chip" href="#shot-scale">shot scale</a>
+          <a class="chip" href="#shot-boundary">shot boundary</a>
+          <a class="chip" href="#camera-motion">camera motion</a>
+          <a class="chip" href="#shot-reverse-shot">shot-reverse-shot</a>
+          <a class="chip" href="#continuity-editing">continuity editing</a>
+          <a class="chip" href="#multimodal-learning">multimodal learning</a>
+          <a class="chip" href="#vlm">VLM</a>
+          <a class="chip" href="#benchmark">benchmark</a>
+        </div>
+      </section>
+
+      <article class="term" id="shot-length">
+        <h3>shot length / 镜头长度</h3>
+        <div class="alias">也可译为：镜头时长、单镜头持续时间</div>
+        <p><strong>定义：</strong>一个镜头从开始到结束持续的时间，通常以秒为单位。它是电影形式量化分析中最基础的指标之一。</p>
+        <p><strong>为什么重要：</strong>镜头长度直接关系到剪辑节奏、观看速度、紧张感和叙事密度。动作片、艺术电影、纪录片、电视剧和短视频的镜头长度分布往往差异很大。</p>
+        <p><strong>怎么使用：</strong>研究者可以统计某部作品或某位导演的镜头长度分布，比较不同年代、类型或导演风格的剪辑节奏。</p>
+        <div class="note">示例问题：某导演后期作品的镜头是否越来越短？短视频爆款是否具有更高的剪辑频率？</div>
+        <div class="links"><a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">CFA with R</a><a href="https://cinemetrics.lv/" target="_blank" rel="noopener">Cinemetrics</a></div>
+      </article>
+
+      <article class="term" id="asl">
+        <h3>ASL / Average Shot Length / 平均镜头长度</h3>
+        <div class="alias">常见缩写：ASL</div>
+        <p><strong>定义：</strong>一部影片或一个片段中所有镜头长度的平均值。通常计算方式是总时长除以镜头数量。</p>
+        <p><strong>为什么重要：</strong>ASL 可以快速描述一部作品的整体剪辑速度。ASL 越短，通常意味着剪辑越密集；ASL 越长，通常意味着节奏更舒缓或长镜头比例更高。</p>
+        <p><strong>局限：</strong>ASL 是平均值，容易掩盖内部差异。两部影片 ASL 相同，也可能一个镜头分布稳定，另一个由大量短镜头和少数长镜头组成。因此最好结合中位数、分布图和段落分析。</p>
+        <div class="note">写综述时可以把 ASL 作为“传统统计特征如何进入电影风格研究”的典型例子。</div>
+        <div class="links"><a href="https://cinemetrics.lv/database.php" target="_blank" rel="noopener">Cinemetrics Database</a><a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">CFA with R</a></div>
+      </article>
+
+      <article class="term" id="shot-scale">
+        <h3>shot scale / 景别</h3>
+        <div class="alias">常见类别：远景、全景、中景、近景、特写、大特写</div>
+        <p><strong>定义：</strong>景别描述主体在画面中所占比例和观看距离。它决定观众与人物、空间和动作之间的感知距离。</p>
+        <p><strong>为什么重要：</strong>景别是视听语言中最核心的镜头元素之一。特写常用于强调情绪和细节，远景常用于展示环境、空间关系和人物处境。</p>
+        <p><strong>AI 任务：</strong>shot scale recognition，即自动识别镜头属于远景、中景、近景或特写等类别。</p>
+        <div class="links"><a href="https://cinescale.github.io/shotscale/" target="_blank" rel="noopener">ShotScale</a><a href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">MovieShots</a></div>
+      </article>
+
+      <article class="term" id="shot-boundary">
+        <h3>shot boundary / 镜头边界</h3>
+        <div class="alias">相关任务：shot boundary detection，镜头边界检测</div>
+        <p><strong>定义：</strong>镜头边界是一个镜头结束、下一个镜头开始的位置。它可能是硬切，也可能是淡入淡出、叠化或其他转场。</p>
+        <p><strong>为什么重要：</strong>没有镜头边界，就无法计算镜头长度、剪辑节奏、场景结构或镜头组接模式。因此它是很多自动拉片系统的第一步。</p>
+        <p><strong>AI 任务：</strong>给定视频，模型需要找出所有切点和转场位置，并尽量区分硬切与渐变转场。</p>
+        <div class="links"><a href="https://github.com/dawitmureja/AVE" target="_blank" rel="noopener">AVE</a><a href="https://movienet.github.io/" target="_blank" rel="noopener">MovieNet</a></div>
+      </article>
+
+      <article class="term" id="camera-motion">
+        <h3>camera motion / 镜头运动</h3>
+        <div class="alias">常见类型：pan、tilt、zoom、dolly、tracking、handheld</div>
+        <p><strong>定义：</strong>镜头运动描述摄影机或镜头焦距在拍摄过程中的变化，例如摇、移、推、拉、跟拍和变焦。</p>
+        <p><strong>为什么重要：</strong>镜头运动不仅是视觉效果，也常承担叙事功能。例如推镜可能制造压迫或强调，跟拍可能增强沉浸感，手持镜头可能制造纪实感或不稳定感。</p>
+        <p><strong>AI 难点：</strong>模型需要区分“物体在动”和“摄影机在动”，还要区分几何运动和语义运动意图。</p>
+        <div class="links"><a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a><a href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">MovieShots</a></div>
+      </article>
+
+      <article class="term" id="optical-flow">
+        <h3>optical flow / 光流</h3>
+        <div class="alias">计算机视觉术语</div>
+        <p><strong>定义：</strong>光流描述视频中像素或视觉特征在连续帧之间的运动方向和速度。</p>
+        <p><strong>为什么重要：</strong>光流可用于估计运动强度、识别镜头运动、动作识别和相机运动分析。它是从画面运动进入视听语言分析的技术桥梁。</p>
+        <p><strong>局限：</strong>光流主要描述几何变化，不等于理解镜头的叙事功能。它能告诉你“画面怎么动”，但不能直接告诉你“为什么这样动”。</p>
+        <div class="links"><a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a></div>
+      </article>
+
+      <article class="term" id="shot-reverse-shot">
+        <h3>shot-reverse-shot / 正反打</h3>
+        <div class="alias">常见于对话场景</div>
+        <p><strong>定义：</strong>正反打是一种常见剪辑模式，通常在对话中交替展示两个角色的镜头，让观众理解人物之间的空间关系和交流关系。</p>
+        <p><strong>为什么重要：</strong>它是连续性剪辑的重要组成部分，也是人物关系、权力关系和情绪反应的基本表达方式。</p>
+        <p><strong>AI 研究意义：</strong>识别正反打需要理解人物位置、视线方向、镜头顺序和场景连续性，难度高于单镜头分类。</p>
+        <div class="links"><a href="https://inria.hal.science/hal-01950718v1" target="_blank" rel="noopener">Film Editing Patterns</a><a href="https://github.com/dawitmureja/AVE" target="_blank" rel="noopener">AVE</a></div>
+      </article>
+
+      <article class="term" id="continuity-editing">
+        <h3>continuity editing / 连续性剪辑</h3>
+        <div class="alias">相关概念：轴线关系、视线匹配、动作匹配、空间连续性</div>
+        <p><strong>定义：</strong>连续性剪辑是一套让观众感觉空间、时间和动作连续的剪辑规则。</p>
+        <p><strong>为什么重要：</strong>它让观众不被剪辑打断，能够自然理解人物位置、动作方向和叙事进展。</p>
+        <p><strong>AI 研究意义：</strong>如果要评价 AI 生成视频是否“像电影”，连续性就是关键标准之一。生成视频常见问题包括人物位置跳变、视线不一致和空间关系混乱。</p>
+        <div class="links"><a href="https://inria.hal.science/hal-01950718v1" target="_blank" rel="noopener">Film Editing Patterns</a><a href="https://github.com/pris-cv/cinetechbench" target="_blank" rel="noopener">CineTechBench</a></div>
+      </article>
+
+      <article class="term" id="color-histogram">
+        <h3>color histogram / 色彩直方图</h3>
+        <div class="alias">传统视觉特征</div>
+        <p><strong>定义：</strong>色彩直方图统计图像或视频帧中不同颜色范围的分布。</p>
+        <p><strong>为什么重要：</strong>它可用于分析影片整体色调、场景变化、导演风格和类型风格。例如黑色电影、青春片、恐怖片可能有不同的色彩分布。</p>
+        <p><strong>局限：</strong>色彩直方图不能直接解释色彩的象征意义，仍需结合场景、叙事和文化语境。</p>
+        <div class="links"><a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">CFA with R</a><a href="https://github.com/distant-viewing/dvt" target="_blank" rel="noopener">Distant Viewing Toolkit</a></div>
+      </article>
+
+      <article class="term" id="editing-rhythm">
+        <h3>editing rhythm / 剪辑节奏</h3>
+        <div class="alias">相关指标：shot length、ASL、cut frequency</div>
+        <p><strong>定义：</strong>剪辑节奏指镜头切换的速度、密度和变化方式。它既包括平均剪辑速度，也包括节奏起伏。</p>
+        <p><strong>为什么重要：</strong>剪辑节奏影响紧张感、情绪推进、动作强度和叙事速度。它是连接形式统计和观众感受的重要概念。</p>
+        <p><strong>怎么分析：</strong>可结合镜头长度分布、ASL、段落内镜头密度、声音节拍和情绪曲线分析。</p>
+        <div class="links"><a href="#shot-length">shot length</a><a href="#asl">ASL</a><a href="https://cinemetrics.lv/" target="_blank" rel="noopener">Cinemetrics</a></div>
+      </article>
+
+      <article class="term" id="multimodal-learning">
+        <h3>multimodal learning / 多模态学习</h3>
+        <div class="alias">在影视研究中常见模态：video、audio、text</div>
+        <p><strong>定义：</strong>多模态学习是把不同类型的信息共同建模，例如画面、声音、字幕、对白、剧情文本和元数据。</p>
+        <p><strong>为什么重要：</strong>视听语言本来就是多模态的。只看画面会遗漏音乐、对白、音效和字幕在意义生成中的作用。</p>
+        <p><strong>影视应用：</strong>片段检索、情绪识别、剧情理解、人物关系分析、预告片片段选择和媒体推荐。</p>
+        <div class="links"><a href="https://movienet.github.io/" target="_blank" rel="noopener">MovieNet</a><a href="https://netflixtechblog.com/mediafm-the-multimodal-ai-foundation-for-media-understanding-at-netflix-e8c28df82e2d" target="_blank" rel="noopener">MediaFM</a></div>
+      </article>
+
+      <article class="term" id="audio-video-text">
+        <h3>audio-video-text / 声画文三模态</h3>
+        <div class="alias">也可理解为：声音、画面、文字共同建模</div>
+        <p><strong>定义：</strong>把音频、视频画面和文本信息放在同一模型或同一分析框架中。文本可以来自字幕、对白转写、音频描述、剧情简介或标签。</p>
+        <p><strong>为什么重要：</strong>影视叙事常常由画面、声音和文字共同完成。例如画面表现人物沉默，音乐制造紧张，字幕/对白给出信息，这些都需要联合理解。</p>
+        <div class="links"><a href="https://netflixtechblog.com/mediafm-the-multimodal-ai-foundation-for-media-understanding-at-netflix-e8c28df82e2d" target="_blank" rel="noopener">MediaFM</a><a href="https://movienet.github.io/" target="_blank" rel="noopener">MovieNet</a></div>
+      </article>
+
+      <article class="term" id="vlm">
+        <h3>VLM / Vision-Language Model / 视觉语言模型</h3>
+        <div class="alias">相关：MLLM、Video-Language Model、Vision-Language Understanding</div>
+        <p><strong>定义：</strong>视觉语言模型能够同时处理视觉输入和文本输入，完成描述、问答、检索、分类和推理等任务。视频场景下也常扩展为 video-language model。</p>
+        <p><strong>为什么重要：</strong>VLM 使模型可以回答“这个镜头是什么景别”“摄影机是否在推进”“这个片段的情绪是什么”等问题。</p>
+        <p><strong>局限：</strong>通用 VLM 不一定懂电影语言。ShotBench、CameraBench 等 benchmark 正是为了测试这种能力边界。</p>
+        <div class="links"><a href="https://vchitect.github.io/ShotBench-project/" target="_blank" rel="noopener">ShotBench</a><a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a></div>
+      </article>
+
+      <article class="term" id="video-qa">
+        <h3>video QA / 视频问答</h3>
+        <div class="alias">QA = Question Answering</div>
+        <p><strong>定义：</strong>给定一段视频和一个问题，模型需要根据视频内容回答。电影语言研究中的视频问答可以询问景别、机位、运动、构图、人物关系和叙事功能。</p>
+        <p><strong>为什么重要：</strong>它把模型能力从单纯分类扩展到可解释的问答形式，适合评估模型是否理解细粒度视听线索。</p>
+        <div class="links"><a href="https://vchitect.github.io/ShotBench-project/" target="_blank" rel="noopener">ShotBench</a><a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a></div>
+      </article>
+
+      <article class="term" id="cinematic-language">
+        <h3>cinematic language / 电影语言</h3>
+        <div class="alias">中文语境中常与“视听语言”“镜头语言”交叉使用</div>
+        <p><strong>定义：</strong>电影通过镜头、构图、运动、剪辑、声音、表演、色彩和叙事组织来表达意义的方式。</p>
+        <p><strong>为什么重要：</strong>AI 研究如果只识别画面中有什么物体，还没有进入电影语言层面。电影语言强调形式如何产生叙事、情感和审美效果。</p>
+        <div class="links"><a href="https://vchitect.github.io/ShotBench-project/" target="_blank" rel="noopener">ShotBench</a><a href="https://github.com/pris-cv/cinetechbench" target="_blank" rel="noopener">CineTechBench</a></div>
+      </article>
+
+      <article class="term" id="benchmark">
+        <h3>benchmark / 基准评测</h3>
+        <div class="alias">相关：dataset、leaderboard、evaluation protocol</div>
+        <p><strong>定义：</strong>benchmark 是用于统一评估模型能力的数据集、任务和评价指标组合。</p>
+        <p><strong>为什么重要：</strong>没有 benchmark，不同模型很难公平比较。电影语言领域的 benchmark 可以测试模型是否理解景别、运动、剪辑、构图和生成质量。</p>
+        <p><strong>注意：</strong>benchmark 的设计会影响研究方向。只评估分类准确率，可能忽略叙事功能、文化语境和审美解释。</p>
+        <div class="links"><a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a><a href="https://vchitect.github.io/ShotBench-project/" target="_blank" rel="noopener">ShotBench</a><a href="https://github.com/pris-cv/cinetechbench" target="_blank" rel="noopener">CineTechBench</a></div>
+      </article>
+
+      <article class="term" id="cnn">
+        <h3>CNN / Convolutional Neural Network / 卷积神经网络</h3>
+        <p><strong>定义：</strong>CNN 是一种经典视觉深度学习模型，常用于图像分类、特征提取、目标识别和早期视觉任务。</p>
+        <p><strong>影视应用：</strong>景别识别、场景分类、人物检测、图像特征提取等。虽然现在 Transformer 和 VLM 更热门，但 CNN 仍是理解早期电影视觉分析论文的重要基础。</p>
+      </article>
+
+      <article class="term" id="object-detection">
+        <h3>object detection / 目标检测</h3>
+        <p><strong>定义：</strong>识别画面中的对象类别，并给出其位置框。</p>
+        <p><strong>影视应用：</strong>检测人物、车辆、道具、武器、空间元素等，用于场景理解、人物关系分析和视觉叙事研究。</p>
+        <div class="links"><a href="https://github.com/distant-viewing/dvt" target="_blank" rel="noopener">Distant Viewing Toolkit</a><a href="https://movienet.github.io/" target="_blank" rel="noopener">MovieNet</a></div>
+      </article>
+
+      <article class="term" id="transformer">
+        <h3>Transformer</h3>
+        <p><strong>定义：</strong>一种基于注意力机制的深度学习架构，广泛用于语言、视觉、音频和多模态模型。</p>
+        <p><strong>影视应用：</strong>长视频理解、字幕-画面对齐、片段检索、视频问答、多模态嵌入和媒体基础模型。</p>
+        <div class="links"><a href="https://netflixtechblog.com/mediafm-the-multimodal-ai-foundation-for-media-understanding-at-netflix-e8c28df82e2d" target="_blank" rel="noopener">MediaFM</a></div>
+      </article>
+
+      <article class="term" id="contrastive-learning">
+        <h3>contrastive learning / 对比学习</h3>
+        <p><strong>定义：</strong>让模型学习把相关的样本拉近、不相关的样本推远。例如把一个视频片段和正确文本描述拉近，把错误描述推远。</p>
+        <p><strong>影视应用：</strong>视频-文本检索、片段匹配、预告片素材检索和多模态表示学习。</p>
+      </article>
+
+      <article class="term" id="embeddings">
+        <h3>embeddings / 嵌入表示</h3>
+        <p><strong>定义：</strong>把图像、视频、声音或文本转化为向量表示，使模型可以计算相似度、聚类或检索。</p>
+        <p><strong>影视应用：</strong>相似镜头检索、情绪片段查找、风格聚类、推荐系统和多模态媒体理解。</p>
+      </article>
+
+      <footer>
+        <p>Prepared as a glossary for the AI audiovisual language review site. Last updated: 2026-07-08.</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -545,6 +545,7 @@
         <a href="#limits">局限与趋势</a>
         <a href="#outline">论文结构</a>
         <a href="#learning">新手学习</a>
+        <a href="glossary.html">术语字典</a>
         <a href="#refs">参考来源</a>
       </nav>
 
@@ -562,6 +563,7 @@
           <div class="hero-actions">
             <a class="btn primary" href="#framework">查看综述框架</a>
             <a class="btn" href="#datasets">查看代表数据集</a>
+            <a class="btn" href="glossary.html">打开术语字典</a>
           </div>
           <div class="hero-grid">
             <div class="stat"><strong>可写综述</strong><span>不是资料太少，而是关键词和学科边界分散。</span></div>
@@ -613,7 +615,7 @@
             </div>
             <div class="card">
               <h4>2. 剪辑语言与镜头组接</h4>
-              <p>研究镜头边界、镜头长度、正反打、连续性剪辑、剪辑节奏和组接模式。</p>
+              <p>研究<a href="glossary.html#shot-boundary">镜头边界</a>、<a href="glossary.html#shot-length">镜头长度</a>、<a href="glossary.html#shot-reverse-shot">正反打</a>、<a href="glossary.html#continuity-editing">连续性剪辑</a>、剪辑节奏和组接模式。</p>
               <div class="tag-row"><span class="tag warm">editing pattern</span><span class="tag warm">shot sequence</span></div>
             </div>
             <div class="card">
@@ -809,7 +811,7 @@
                   <tr>
                     <td>Cinemetrics</td>
                     <td>数据库 / 工具</td>
-                    <td>镜头长度、平均镜头长度和剪辑节奏的记录、比较和数据库化。</td>
+                    <td><a href="glossary.html#shot-length">镜头长度</a>、<a href="glossary.html#asl">平均镜头长度</a>和剪辑节奏的记录、比较和数据库化。</td>
                     <td>剪辑节奏可以被量化，且是连接传统拉片与计算分析的早期路径。</td>
                     <td><a href="https://cinemetrics.lv/" target="_blank" rel="noopener">Project</a> · <a href="https://www.cinemetrics.lv/database.php" target="_blank" rel="noopener">Database</a></td>
                   </tr>
@@ -963,7 +965,7 @@
                 </div>
                 <div class="flow-step">
                   <strong>L2 结构组织层</strong>
-                  <p>镜头边界、镜头长度、剪辑节奏、正反打、场景分割和镜头组接模式。</p>
+                  <p><a href="glossary.html#shot-boundary">镜头边界</a>、<a href="glossary.html#shot-length">镜头长度</a>、剪辑节奏、<a href="glossary.html#shot-reverse-shot">正反打</a>、场景分割和镜头组接模式。</p>
                 </div>
                 <div class="flow-step">
                   <strong>L3 多模态叙事层</strong>
@@ -991,20 +993,20 @@
           <div class="grid-2">
             <div class="card">
               <h4>1. 传统统计特征与形式量化</h4>
-              <p>这是最适合作为入门的路径。研究者先把电影切成镜头或段落，再统计镜头长度、平均镜头长度、景别比例、剪辑频率、色彩分布、运动强度和声音密度。这类方法不一定使用深度学习，但能直接服务导演风格、类型片节奏和历史风格变迁研究。</p>
-              <div class="tag-row"><span class="tag">shot length</span><span class="tag">ASL</span><span class="tag">color histogram</span><span class="tag">editing rhythm</span></div>
+              <p>这是最适合作为入门的路径。研究者先把电影切成镜头或段落，再统计<a href="glossary.html#shot-length">镜头长度</a>、<a href="glossary.html#asl">平均镜头长度</a>、<a href="glossary.html#shot-scale">景别</a>比例、剪辑频率、<a href="glossary.html#color-histogram">色彩分布</a>、运动强度和声音密度。这类方法不一定使用深度学习，但能直接服务导演风格、类型片节奏和历史风格变迁研究。</p>
+              <div class="tag-row"><a class="tag" href="glossary.html#shot-length">shot length</a><a class="tag" href="glossary.html#asl">ASL</a><a class="tag" href="glossary.html#color-histogram">color histogram</a><a class="tag" href="glossary.html#editing-rhythm">editing rhythm</a></div>
               <p style="margin-top:10px;">代表入口：<a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">Computational Film Analysis with R</a>、<a href="https://cinemetrics.lv/" target="_blank" rel="noopener">Cinemetrics</a>。</p>
             </div>
             <div class="card">
               <h4>2. 计算机视觉与镜头元素识别</h4>
-              <p>这一类方法使用图像分类、目标检测、人脸识别、场景识别、光流、运动估计和镜头边界检测等技术，把景别、机位、构图、人物、场景和镜头运动变成可识别标签。它是“AI 视听语言研究”目前最成熟的技术基础。</p>
-              <div class="tag-row"><span class="tag">CNN</span><span class="tag">object detection</span><span class="tag">optical flow</span><span class="tag">shot boundary</span></div>
+              <p>这一类方法使用图像分类、目标检测、人脸识别、场景识别、<a href="glossary.html#optical-flow">光流</a>、运动估计和<a href="glossary.html#shot-boundary">镜头边界检测</a>等技术，把<a href="glossary.html#shot-scale">景别</a>、机位、构图、人物、场景和<a href="glossary.html#camera-motion">镜头运动</a>变成可识别标签。它是“AI 视听语言研究”目前最成熟的技术基础。</p>
+              <div class="tag-row"><a class="tag" href="glossary.html#cnn">CNN</a><a class="tag" href="glossary.html#object-detection">object detection</a><a class="tag" href="glossary.html#optical-flow">optical flow</a><a class="tag" href="glossary.html#shot-boundary">shot boundary</a></div>
               <p style="margin-top:10px;">代表成果：<a href="https://cinescale.github.io/" target="_blank" rel="noopener">CineScale</a>、<a href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">MovieShots</a>、<a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a>。</p>
             </div>
             <div class="card">
               <h4>3. 多模态学习与电影语义建模</h4>
-              <p>电影不是纯视觉文本。多模态方法把画面、对白、字幕、音乐、音效、人物、场景和剧情描述共同建模，用于片段检索、情绪识别、场景理解、人物关系分析和叙事结构分析。它把视听语言从“画面形式”扩展到“声画协同”。</p>
-              <div class="tag-row"><span class="tag">audio-video-text</span><span class="tag">Transformer</span><span class="tag">contrastive learning</span><span class="tag">embeddings</span></div>
+              <p>电影不是纯视觉文本。<a href="glossary.html#multimodal-learning">多模态方法</a>把画面、对白、字幕、音乐、音效、人物、场景和剧情描述共同建模，用于片段检索、情绪识别、场景理解、人物关系分析和叙事结构分析。它把视听语言从“画面形式”扩展到“声画协同”。</p>
+              <div class="tag-row"><a class="tag" href="glossary.html#audio-video-text">audio-video-text</a><a class="tag" href="glossary.html#transformer">Transformer</a><a class="tag" href="glossary.html#contrastive-learning">contrastive learning</a><a class="tag" href="glossary.html#embeddings">embeddings</a></div>
               <p style="margin-top:10px;">代表成果：<a href="https://movienet.github.io/" target="_blank" rel="noopener">MovieNet</a>、<a href="https://netflixtechblog.com/mediafm-the-multimodal-ai-foundation-for-media-understanding-at-netflix-e8c28df82e2d" target="_blank" rel="noopener">Netflix MediaFM</a>。</p>
             </div>
             <div class="card">
@@ -1015,8 +1017,8 @@
             </div>
             <div class="card">
               <h4>5. 大模型与视觉语言模型评测</h4>
-              <p>视觉语言模型可以回答视频问题、生成描述、做片段检索和解释画面，但它们并不天然懂电影语言。因此近期研究开始构建 cinematic language benchmark，专门测试模型是否理解景别、运动、构图、光线、焦距和叙事性镜头功能。</p>
-              <div class="tag-row"><span class="tag rose">VLM</span><span class="tag rose">video QA</span><span class="tag rose">cinematic language</span><span class="tag rose">benchmark</span></div>
+              <p><a href="glossary.html#vlm">视觉语言模型</a>可以回答视频问题、生成描述、做片段检索和解释画面，但它们并不天然懂电影语言。因此近期研究开始构建 cinematic language benchmark，专门测试模型是否理解景别、运动、构图、光线、焦距和叙事性镜头功能。</p>
+              <div class="tag-row"><a class="tag rose" href="glossary.html#vlm">VLM</a><a class="tag rose" href="glossary.html#video-qa">video QA</a><a class="tag rose" href="glossary.html#cinematic-language">cinematic language</a><a class="tag rose" href="glossary.html#benchmark">benchmark</a></div>
               <p style="margin-top:10px;">代表成果：<a href="https://vchitect.github.io/ShotBench-project/" target="_blank" rel="noopener">ShotBench</a>、<a href="https://github.com/pris-cv/cinetechbench" target="_blank" rel="noopener">CineTechBench</a>、<a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a>。</p>
             </div>
             <div class="card">
