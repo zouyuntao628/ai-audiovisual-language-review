@@ -540,6 +540,7 @@
         <a href="#framework">综述框架</a>
         <a href="#limits">局限与趋势</a>
         <a href="#outline">论文结构</a>
+        <a href="#learning">新手学习</a>
         <a href="#refs">参考来源</a>
       </nav>
 
@@ -708,26 +709,32 @@
             <div class="card">
               <h4>MovieNet</h4>
               <p>覆盖电影人物、场景、动作、剧情和风格标签，适合讨论长视频与多模态电影理解。</p>
+              <div class="tag-row"><a class="tag" href="https://movienet.github.io/" target="_blank" rel="noopener">项目页</a><a class="tag" href="https://arxiv.org/abs/2007.10937" target="_blank" rel="noopener">论文</a><a class="tag" href="https://github.com/movienet/movienet-tools" target="_blank" rel="noopener">工具</a></div>
             </div>
             <div class="card">
               <h4>MovieShots</h4>
               <p>面向景别和镜头运动识别，对应传统视听语言中的镜头类型分析。</p>
+              <div class="tag-row"><a class="tag" href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">项目页</a><a class="tag" href="https://arxiv.org/abs/2008.03548" target="_blank" rel="noopener">论文</a></div>
             </div>
             <div class="card">
               <h4>CineScale / ShotScale</h4>
               <p>用 AI 识别景别、角度、机位高度，并用于电影风格与作者性分析。</p>
+              <div class="tag-row"><a class="tag" href="https://cinescale.github.io/" target="_blank" rel="noopener">CineScale</a><a class="tag" href="https://cinescale.github.io/shotscale/" target="_blank" rel="noopener">ShotScale</a></div>
             </div>
             <div class="card">
               <h4>AVE</h4>
               <p>面向剪辑结构、镜头属性和 AI 辅助视频组接，适合写剪辑语言。</p>
+              <div class="tag-row"><a class="tag warm" href="https://arxiv.org/abs/2207.09812" target="_blank" rel="noopener">论文</a><a class="tag warm" href="https://github.com/dawitmureja/AVE" target="_blank" rel="noopener">代码</a></div>
             </div>
             <div class="card">
               <h4>CameraBench</h4>
               <p>专门评估模型是否理解镜头运动，揭示通用 VLM 对电影镜头运动理解不足。</p>
+              <div class="tag-row"><a class="tag" href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">项目页</a><a class="tag" href="https://arxiv.org/abs/2504.15376" target="_blank" rel="noopener">论文</a></div>
             </div>
             <div class="card">
               <h4>ShotBench / CineTechBench</h4>
               <p>面向 cinematic language understanding 和生成式视频评价，是最新前沿。</p>
+              <div class="tag-row"><a class="tag rose" href="https://arxiv.org/abs/2506.21356" target="_blank" rel="noopener">ShotBench</a><a class="tag rose" href="https://arxiv.org/abs/2505.15145" target="_blank" rel="noopener">CineTechBench</a></div>
             </div>
           </div>
         </section>
@@ -832,13 +839,56 @@
           </div>
         </section>
 
+        <section id="learning">
+          <div class="section-head">
+            <h3>新手学习路径</h3>
+            <p>如果读者刚进入这个方向，可以先从“电影形式如何被量化”开始，再进入数据集、工具和多模态模型。下面这些入口适合边学边做。</p>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h4>1. 从 Nick Redfern 的入门书开始</h4>
+              <p>Nick Redfern 的 <em>Computational Film Analysis with R</em> 是一个典型入口。它介绍如何用计算方法研究电影形式和风格，适合没有复杂 AI 背景、但想理解镜头长度、风格统计和电影形式数据化的新手。</p>
+              <div class="tag-row"><a class="tag" href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">在线书</a></div>
+            </div>
+            <div class="card">
+              <h4>2. 用 Cinemetrics 理解镜头长度</h4>
+              <p>Cinemetrics 是电影镜头长度统计和风格研究的重要入口。它适合学习如何把人工拉片中的 shot length、ASL、节奏分布转化为可比较的数据。</p>
+              <div class="tag-row"><a class="tag" href="https://cinemetrics.lv/" target="_blank" rel="noopener">Cinemetrics</a><a class="tag" href="https://www.cinemetrics.lv/database.php" target="_blank" rel="noopener">数据库</a></div>
+            </div>
+            <div class="card">
+              <h4>3. 读 Distant Viewing，理解数字人文框架</h4>
+              <p>Distant Viewing 把计算机视觉用于大规模视觉文化分析。它能帮助新手理解：AI 不只是做分类，也可以成为电影学、传播学和文化研究的方法中介。</p>
+              <div class="tag-row"><a class="tag rose" href="https://distantviewing.org/" target="_blank" rel="noopener">实验室</a><a class="tag rose" href="https://direct.mit.edu/books/oa-monograph/5674/Distant-ViewingComputational-Exploration-of" target="_blank" rel="noopener">开放书籍</a></div>
+            </div>
+            <div class="card">
+              <h4>4. 先用标注工具做小样本拉片</h4>
+              <p>在训练模型前，最好先用 ELAN、ANVIL 或 VIAN 做 5-10 个片段的人工标注，明确你的标签体系：景别、运动、声音、情绪、剪辑关系和叙事功能。</p>
+              <div class="tag-row"><a class="tag warm" href="https://archive.mpi.nl/tla/elan" target="_blank" rel="noopener">ELAN</a><a class="tag warm" href="https://www.anvil-software.org/" target="_blank" rel="noopener">ANVIL</a><a class="tag warm" href="https://www.vian.app/" target="_blank" rel="noopener">VIAN</a></div>
+            </div>
+            <div class="card">
+              <h4>5. 进入 MovieNet / MovieShots 数据集</h4>
+              <p>当你已经理解景别、镜头运动和场景边界后，再看 MovieNet 和 MovieShots。它们能把“视听语言概念”连接到可训练模型和 benchmark。</p>
+              <div class="tag-row"><a class="tag" href="https://movienet.github.io/" target="_blank" rel="noopener">MovieNet</a><a class="tag" href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">MovieShots</a><a class="tag" href="https://github.com/movienet/movienet-tools" target="_blank" rel="noopener">Tools</a></div>
+            </div>
+            <div class="card">
+              <h4>6. 最后看生成式视频评价</h4>
+              <p>CameraBench、ShotBench 和 CineTechBench 适合作为前沿阅读。它们讨论大模型和视频生成模型是否真正理解镜头运动、电影技术和 cinematic language。</p>
+              <div class="tag-row"><a class="tag rose" href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a><a class="tag rose" href="https://arxiv.org/abs/2506.21356" target="_blank" rel="noopener">ShotBench</a><a class="tag rose" href="https://arxiv.org/abs/2505.15145" target="_blank" rel="noopener">CineTechBench</a></div>
+            </div>
+          </div>
+          <div class="quote" style="margin-top:16px;">一条可执行路线：先用 Cinemetrics / CFA with R 学会量化电影形式，再用 ELAN / ANVIL / VIAN 建自己的小样本标注，随后用 MovieNet / MovieShots 对接 AI 数据集，最后讨论 VLM 和生成式视频模型对电影语言的理解边界。</div>
+        </section>
+
         <section id="refs">
           <div class="section-head">
             <h3>参考来源</h3>
-            <p>下面列出页面中使用的代表性来源，正式写论文时可继续扩展到 60-100 篇文献。</p>
+            <p>下面列出页面中使用的代表性来源，并补充适合新手学习、数据标注和继续阅读的外部入口。正式写论文时可继续扩展到 60-100 篇文献。</p>
           </div>
           <ul class="refs">
-            <li>MovieNet: A Holistic Dataset for Movie Understanding. <a href="https://arxiv.org/abs/2007.10937" target="_blank" rel="noopener">arXiv</a> · <a href="https://movienet.github.io/" target="_blank" rel="noopener">Project</a></li>
+            <li>Nick Redfern, <em>Computational Film Analysis with R</em>. 适合新手理解如何用统计和 R 研究电影形式、风格和镜头结构。<a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">Online book</a></li>
+            <li>Cinemetrics. 电影镜头长度统计和风格比较的重要数据库与工具入口。<a href="https://cinemetrics.lv/" target="_blank" rel="noopener">Project</a> · <a href="https://www.cinemetrics.lv/database.php" target="_blank" rel="noopener">Database</a></li>
+            <li>Distant Viewing Lab. 数字人文和视觉文化计算分析的重要团队。<a href="https://distantviewing.org/" target="_blank" rel="noopener">Lab</a></li>
+            <li>MovieNet: A Holistic Dataset for Movie Understanding. <a href="https://arxiv.org/abs/2007.10937" target="_blank" rel="noopener">arXiv</a> · <a href="https://movienet.github.io/" target="_blank" rel="noopener">Project</a> · <a href="https://github.com/movienet/movienet-tools" target="_blank" rel="noopener">Tools</a></li>
             <li>MovieShots: A Shot Type Dataset based on MovieNet. <a href="https://arxiv.org/abs/2008.03548" target="_blank" rel="noopener">arXiv</a> · <a href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">Project</a></li>
             <li>CineScale and ShotScale projects. <a href="https://cinescale.github.io/" target="_blank" rel="noopener">CineScale</a> · <a href="https://cinescale.github.io/shotscale/" target="_blank" rel="noopener">ShotScale</a></li>
             <li>The Anatomy of Video Editing: A Dataset and Benchmark Suite for AI-Assisted Video Editing. <a href="https://arxiv.org/abs/2207.09812" target="_blank" rel="noopener">arXiv</a> · <a href="https://github.com/dawitmureja/AVE" target="_blank" rel="noopener">GitHub</a></li>
@@ -849,7 +899,9 @@
             <li>ShotBench: Expert-Evaluated Benchmark for Cinematic Language Understanding. <a href="https://arxiv.org/abs/2506.21356" target="_blank" rel="noopener">arXiv</a></li>
             <li>CineTechBench: Benchmarking Cinematic Technical Understanding and Generation. <a href="https://arxiv.org/abs/2505.15145" target="_blank" rel="noopener">arXiv</a></li>
             <li>Intelligent Cinematography: a review of AI research for real camera content acquisition for entertainment purposes. <a href="https://link.springer.com/article/10.1007/s10462-024-11089-3" target="_blank" rel="noopener">Springer</a></li>
-            <li>Computational Film Analysis with R. <a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">Online book</a></li>
+            <li>ELAN. 音视频多层标注工具，适合做对白、动作、镜头、声音和叙事功能的人工标注。<a href="https://archive.mpi.nl/tla/elan" target="_blank" rel="noopener">Tool</a></li>
+            <li>ANVIL. 面向视频行为和多模态标注的软件，也可用于镜头、声音和人物行为标注。<a href="https://www.anvil-software.org/" target="_blank" rel="noopener">Tool</a></li>
+            <li>VIAN. 面向电影分析和注释的工具，适合影视研究者建立镜头、颜色、分段和语义标注工作流。<a href="https://www.vian.app/" target="_blank" rel="noopener">Tool</a></li>
           </ul>
         </section>
       </div>
