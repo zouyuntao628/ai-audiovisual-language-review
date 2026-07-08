@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>人工智能赋能的视听语言研究综述</title>
+  <meta name="description" content="从镜头特征识别到多模态叙事分析：人工智能赋能的视听语言研究综述。">
+  <style>
+    :root {
+      --ink: #18212b;
+      --muted: #5f6d7a;
+      --line: #dce4ea;
+      --paper: #ffffff;
+      --soft: #f5f8fa;
+      --deep: #173547;
+      --brand: #1c7d76;
+      --brand-2: #bc7a36;
+      --accent: #8c4c72;
+      --pale: #e8f3f1;
+      --warm: #fff5ea;
+      --rose: #f8edf3;
+      --shadow: 0 24px 60px rgba(22, 38, 54, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(28, 125, 118, 0.16), transparent 32%),
+        radial-gradient(circle at 92% 8%, rgba(188, 122, 54, 0.18), transparent 30%),
+        linear-gradient(180deg, #fbfcfd 0%, #f3f7f8 45%, #ffffff 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 26px 20px;
+      background: var(--deep);
+      color: #edf7f5;
+      overflow-y: auto;
+    }
+
+    .brand {
+      display: grid;
+      gap: 8px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #2ea79d, #d59a52);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.24);
+    }
+
+    .brand-mark svg {
+      width: 25px;
+      height: 25px;
+      stroke: #fff;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .brand p {
+      margin: 0;
+      color: #b7d0ce;
+      font-size: 13px;
+    }
+
+    .nav {
+      display: grid;
+      gap: 6px;
+      margin-top: 24px;
+    }
+
+    .nav a {
+      color: #dbecea;
+      padding: 9px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: block;
+    }
+
+    .nav a:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .side-note {
+      margin-top: 26px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      color: #c9ddda;
+      font-size: 13px;
+    }
+
+    .main {
+      min-width: 0;
+    }
+
+    .hero {
+      min-height: 92vh;
+      padding: 58px 42px 34px;
+      display: grid;
+      align-content: center;
+      position: relative;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(28,125,118,0.1);
+      color: var(--brand);
+      font-weight: 800;
+      font-size: 13px;
+      border: 1px solid rgba(28,125,118,0.18);
+    }
+
+    .hero h2 {
+      margin: 22px 0 18px;
+      max-width: 980px;
+      font-size: clamp(38px, 6vw, 76px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 920px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .btn.primary {
+      background: var(--deep);
+      border-color: var(--deep);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .hero-grid {
+      margin-top: 42px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      min-height: 112px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 10px 30px rgba(22,38,54,0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      color: var(--deep);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .content {
+      padding: 0 42px 58px;
+      max-width: 1180px;
+    }
+
+    section {
+      scroll-margin-top: 24px;
+      margin-bottom: 22px;
+    }
+
+    .section-head {
+      margin: 0 0 16px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .section-head h3 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 880px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 12px 34px rgba(22,38,54,0.07);
+      overflow: hidden;
+    }
+
+    .panel-body {
+      padding: 22px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: #324350;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .card h4 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      background: var(--pale);
+      color: #14655f;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag.warm {
+      background: var(--warm);
+      color: #8f5a1d;
+    }
+
+    .tag.rose {
+      background: var(--rose);
+      color: #81435f;
+    }
+
+    .flow {
+      display: grid;
+      gap: 10px;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .flow-step strong {
+      color: var(--brand);
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 900px;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 13px 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    th {
+      background: #f3f8f7;
+      color: #314c59;
+      font-weight: 900;
+    }
+
+    td {
+      color: #344651;
+    }
+
+    .quote {
+      border-left: 4px solid var(--brand);
+      padding: 13px 16px;
+      background: #f2faf8;
+      color: #2d4f4a;
+      border-radius: 0 8px 8px 0;
+      font-weight: 700;
+    }
+
+    .outline {
+      counter-reset: chapter;
+      display: grid;
+      gap: 12px;
+    }
+
+    .outline-item {
+      counter-increment: chapter;
+      padding: 16px 16px 16px 58px;
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .outline-item::before {
+      content: counter(chapter);
+      position: absolute;
+      left: 16px;
+      top: 17px;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--deep);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .outline-item h4 {
+      margin: 0 0 5px;
+      font-size: 17px;
+    }
+
+    .outline-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .refs {
+      display: grid;
+      gap: 10px;
+      padding-left: 0;
+      list-style: none;
+      margin: 0;
+    }
+
+    .refs li {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #394b55;
+      font-size: 14px;
+    }
+
+    footer {
+      color: var(--muted);
+      padding: 24px 42px 42px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1040px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        position: static;
+        height: auto;
+      }
+
+      .nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-grid,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero,
+      .content,
+      footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 34px;
+      }
+
+      .hero h2 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .nav {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-step {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 18V6"></path><path d="M4 18h16"></path><path d="M7 14l3-3 3 2 5-7"></path><path d="M15 6h3v3"></path></svg>
+        </div>
+        <h1>AI 视听语言研究综述</h1>
+        <p>从镜头特征识别到多模态叙事分析</p>
+      </div>
+
+      <nav class="nav" aria-label="页面导航">
+        <a href="#position">选题判断</a>
+        <a href="#map">研究谱系</a>
+        <a href="#groups">代表团队</a>
+        <a href="#datasets">数据集与任务</a>
+        <a href="#framework">综述框架</a>
+        <a href="#limits">局限与趋势</a>
+        <a href="#outline">论文结构</a>
+        <a href="#refs">参考来源</a>
+      </nav>
+
+      <div class="side-note">
+        结论：文献数量足以支撑一篇中文综述。关键不在“AI + 视听语言”这个窄关键词，而在把计算电影分析、多模态电影理解、智能摄影和生成式视频评价重新放回视听语言框架中组织。
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="hero">
+        <div class="hero-inner">
+          <span class="eyebrow">Review Topic · AI + Audiovisual Language</span>
+          <h2>人工智能赋能的视听语言研究综述</h2>
+          <p>这个领域已经足够写成一篇系统综述。它的文献分散在计算电影分析、远观影像、多模态电影理解、智能摄影、AI 辅助剪辑和生成式视频评价中，真正的价值在于用“视听语言”重新整合这些研究。</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#framework">查看综述框架</a>
+            <a class="btn" href="#datasets">查看代表数据集</a>
+          </div>
+          <div class="hero-grid">
+            <div class="stat"><strong>可写综述</strong><span>不是资料太少，而是关键词和学科边界分散。</span></div>
+            <div class="stat"><strong>60-100 篇</strong><span>英文综述可整理的参考文献规模。</span></div>
+            <div class="stat"><strong>7 类任务</strong><span>镜头、剪辑、声画、叙事、风格、摄影、生成评价。</span></div>
+            <div class="stat"><strong>新意明确</strong><span>把 AI 任务映射回电影学的视听语言概念。</span></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <section id="position">
+          <div class="section-head">
+            <h3>选题判断</h3>
+            <p>“人工智能在视听语言研究中的应用”不是一个传统成熟学科名称，但它已经具备综述写作的材料基础和问题意识。</p>
+          </div>
+          <div class="panel">
+            <div class="panel-body">
+              <p class="lead">如果只检索“AI + 视听语言”，文献会显得不多；如果扩展到 <em>computational film analysis</em>、<em>distant viewing</em>、<em>cinematic language understanding</em>、<em>intelligent cinematography</em>、<em>multimodal movie understanding</em> 和 <em>generative AI video evaluation</em>，文献已经足够支撑一篇系统综述。</p>
+              <div class="quote">建议题目：人工智能赋能的视听语言研究综述：从镜头特征识别到多模态叙事分析。</div>
+              <div class="grid-3" style="margin-top:16px;">
+                <div class="card">
+                  <h4>不要写成产业综述</h4>
+                  <p>避免泛泛讨论 AI 写剧本、宣发、票房预测和推荐系统，主线应聚焦视听形式、叙事结构和电影语言评价。</p>
+                </div>
+                <div class="card">
+                  <h4>不要只写技术综述</h4>
+                  <p>不能只罗列 CNN、Transformer、VLM 和准确率，需要说明这些技术对应哪些视听语言问题。</p>
+                </div>
+                <div class="card">
+                  <h4>核心贡献</h4>
+                  <p>用影视学概念组织分散的 AI 文献，提出从形式识别到文化解释的人机协同研究框架。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="map">
+          <div class="section-head">
+            <h3>研究谱系</h3>
+            <p>现有研究可以按视听语言层级组织，而不是按单一技术门类组织。</p>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h4>1. 镜头基础元素识别</h4>
+              <p>识别景别、角度、机位高度、构图、色彩、焦距和镜头运动，是目前最成熟的方向。</p>
+              <div class="tag-row"><span class="tag">shot scale</span><span class="tag">camera angle</span><span class="tag">motion</span></div>
+            </div>
+            <div class="card">
+              <h4>2. 剪辑语言与镜头组接</h4>
+              <p>研究镜头边界、镜头长度、正反打、连续性剪辑、剪辑节奏和组接模式。</p>
+              <div class="tag-row"><span class="tag warm">editing pattern</span><span class="tag warm">shot sequence</span></div>
+            </div>
+            <div class="card">
+              <h4>3. 多模态电影理解</h4>
+              <p>把画面、声音、对白、字幕、人物和场景放在一起建模，分析影视叙事的多模态组织。</p>
+              <div class="tag-row"><span class="tag">audio-video-text</span><span class="tag">movie understanding</span></div>
+            </div>
+            <div class="card">
+              <h4>4. 计算叙事与数字人文</h4>
+              <p>通过大规模影像分析研究导演风格、类型规律、媒介叙事和文化表征。</p>
+              <div class="tag-row"><span class="tag rose">distant viewing</span><span class="tag rose">computational narratology</span></div>
+            </div>
+            <div class="card">
+              <h4>5. 智能摄影与虚拟制作</h4>
+              <p>把构图、轴线、机位、景别变化和剪辑连续性转化为可计算规则，用于自动摄影和虚拟镜头调度。</p>
+              <div class="tag-row"><span class="tag warm">cinematography</span><span class="tag warm">virtual camera</span></div>
+            </div>
+            <div class="card">
+              <h4>6. 生成式视频评价</h4>
+              <p>评估 AI 生成视频是否真正理解镜头语言、空间连续性、运动逻辑、剪辑节奏和叙事连贯性。</p>
+              <div class="tag-row"><span class="tag">VLM</span><span class="tag">text-to-video</span><span class="tag">benchmark</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="groups">
+          <div class="section-head">
+            <h3>代表团队与成果</h3>
+            <p>这些团队和项目可以作为综述的核心文献骨架。</p>
+          </div>
+          <div class="panel">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>团队 / 项目</th>
+                    <th>代表成果</th>
+                    <th>对应视听语言问题</th>
+                    <th>综述写法</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CUHK MMLab / SenseTime</td>
+                    <td>MovieNet、MovieShots</td>
+                    <td>电影人物、场景、剧情、景别、镜头运动</td>
+                    <td>作为“电影多模态理解”和“镜头类型识别”的核心案例。</td>
+                  </tr>
+                  <tr>
+                    <td>University of Brescia + ELTE</td>
+                    <td>CineScale、ShotScale</td>
+                    <td>景别、镜头角度、机位高度、导演风格量化</td>
+                    <td>作为“视听形式可计算化”和“作者风格统计”的核心案例。</td>
+                  </tr>
+                  <tr>
+                    <td>Adobe Research + KAIST</td>
+                    <td>AVE: Anatomy of Video Editing</td>
+                    <td>镜头属性、剪辑结构、自动素材组织</td>
+                    <td>放入“剪辑语言与 AI 辅助剪辑”章节。</td>
+                  </tr>
+                  <tr>
+                    <td>INRIA / IRISA / Marc Christie 等</td>
+                    <td>Film Editing Patterns</td>
+                    <td>剪辑模式、连续性规则、虚拟摄影机调度</td>
+                    <td>说明电影语言知识如何被形式化为规则和约束。</td>
+                  </tr>
+                  <tr>
+                    <td>Distant Viewing Lab / 数字人文研究</td>
+                    <td>Distant Viewing 方法与工具</td>
+                    <td>大规模视觉文化、风格史、媒介叙事分析</td>
+                    <td>连接 AI 技术和人文学科解释。</td>
+                  </tr>
+                  <tr>
+                    <td>Netflix</td>
+                    <td>MediaFM</td>
+                    <td>画面、声音、字幕三模态媒体理解</td>
+                    <td>作为产业级多模态影视理解案例。</td>
+                  </tr>
+                  <tr>
+                    <td>CMU 等近期团队</td>
+                    <td>CameraBench、ShotBench、CineTechBench</td>
+                    <td>镜头运动、电影语言问答、生成视频评价</td>
+                    <td>放入前沿趋势，讨论大模型是否真的懂电影语言。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="datasets">
+          <div class="section-head">
+            <h3>数据集与任务</h3>
+            <p>综述需要证明“材料足够”。下面这些数据集和 benchmark 可以支撑论文主体。</p>
+          </div>
+          <div class="grid-3">
+            <div class="card">
+              <h4>MovieNet</h4>
+              <p>覆盖电影人物、场景、动作、剧情和风格标签，适合讨论长视频与多模态电影理解。</p>
+            </div>
+            <div class="card">
+              <h4>MovieShots</h4>
+              <p>面向景别和镜头运动识别，对应传统视听语言中的镜头类型分析。</p>
+            </div>
+            <div class="card">
+              <h4>CineScale / ShotScale</h4>
+              <p>用 AI 识别景别、角度、机位高度，并用于电影风格与作者性分析。</p>
+            </div>
+            <div class="card">
+              <h4>AVE</h4>
+              <p>面向剪辑结构、镜头属性和 AI 辅助视频组接，适合写剪辑语言。</p>
+            </div>
+            <div class="card">
+              <h4>CameraBench</h4>
+              <p>专门评估模型是否理解镜头运动，揭示通用 VLM 对电影镜头运动理解不足。</p>
+            </div>
+            <div class="card">
+              <h4>ShotBench / CineTechBench</h4>
+              <p>面向 cinematic language understanding 和生成式视频评价，是最新前沿。</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="framework">
+          <div class="section-head">
+            <h3>建议综述框架</h3>
+            <p>可以提出一个五层模型，作为全文的组织主线和理论贡献。</p>
+          </div>
+          <div class="panel">
+            <div class="panel-body">
+              <div class="flow">
+                <div class="flow-step">
+                  <strong>L1 形式识别层</strong>
+                  <p>景别、角度、构图、运动、色彩、焦距、声音事件等基础视听元素的自动识别。</p>
+                </div>
+                <div class="flow-step">
+                  <strong>L2 结构组织层</strong>
+                  <p>镜头边界、镜头长度、剪辑节奏、正反打、场景分割和镜头组接模式。</p>
+                </div>
+                <div class="flow-step">
+                  <strong>L3 多模态叙事层</strong>
+                  <p>人物、对白、音乐、字幕、场景、情绪和情节推进之间的跨模态关系。</p>
+                </div>
+                <div class="flow-step">
+                  <strong>L4 审美解释层</strong>
+                  <p>导演风格、类型语法、叙事策略、文化表征和意识形态意义的解释。</p>
+                </div>
+                <div class="flow-step">
+                  <strong>L5 生成评价层</strong>
+                  <p>AI 视频生成、自动剪辑、自动摄影和镜头语言质量评价。</p>
+                </div>
+              </div>
+              <div class="quote" style="margin-top:16px;">核心观点：AI 正在推动视听语言研究从“个案式人工阐释”走向“规模化形式提取 + 多模态语义建模 + 人文学科解释”的混合范式。</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="limits">
+          <div class="section-head">
+            <h3>局限与未来趋势</h3>
+            <p>综述不能只写成果，还要指出 AI 在视听语言理解上的边界。</p>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h4>形式识别强，意义解释弱</h4>
+              <p>AI 可以判断近景、低角度、推镜和长镜头，但很难稳定解释它们在具体叙事中的权力、情感或反讽功能。</p>
+            </div>
+            <div class="card">
+              <h4>数据集偏西方影视</h4>
+              <p>好莱坞电影、预告片和英语影视材料占比较高，对中国电影、电视剧、纪录片、综艺和竖屏短视频覆盖不足。</p>
+            </div>
+            <div class="card">
+              <h4>电影理论嵌入不足</h4>
+              <p>计算机论文常关注准确率，却较少处理蒙太奇、场面调度、凝视、作者论、类型语法等理论概念。</p>
+            </div>
+            <div class="card">
+              <h4>多模态融合仍不充分</h4>
+              <p>真正的视听语言包括画面、对白、音乐、音效、字幕、沉默和节奏，但很多研究仍以视觉为主。</p>
+            </div>
+            <div class="card">
+              <h4>生成视频缺少电影语言约束</h4>
+              <p>AI 视频往往能生成漂亮画面，但空间连续性、景别动机、镜头组接和声画关系仍不稳定。</p>
+            </div>
+            <div class="card">
+              <h4>未来方向</h4>
+              <p>中文影视数据集、AI 辅助拉片工具、视听语言知识图谱、生成式视频导演能力评价和人机协同解释。</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="outline">
+          <div class="section-head">
+            <h3>论文结构建议</h3>
+            <p>按照下面结构写，可以兼顾影视理论、AI 方法和综述完整性。</p>
+          </div>
+          <div class="outline">
+            <div class="outline-item">
+              <h4>引言</h4>
+              <p>说明传统视听语言研究依赖人工拉片，AI 使大规模视听形式提取与多模态叙事分析成为可能。</p>
+            </div>
+            <div class="outline-item">
+              <h4>概念界定</h4>
+              <p>定义 AI 视听语言研究，并区分镜头层、剪辑层、声画层和叙事层。</p>
+            </div>
+            <div class="outline-item">
+              <h4>数据集与资源</h4>
+              <p>系统梳理 MovieNet、MovieShots、CineScale、AVE、CameraBench、ShotBench 和 CineTechBench。</p>
+            </div>
+            <div class="outline-item">
+              <h4>方法谱系</h4>
+              <p>从传统统计特征、计算机视觉、多模态学习、电影知识规则到大模型与生成式 AI。</p>
+            </div>
+            <div class="outline-item">
+              <h4>研究任务</h4>
+              <p>按镜头语言、剪辑语言、声画关系、导演风格、计算叙事和生成视频评价展开。</p>
+            </div>
+            <div class="outline-item">
+              <h4>局限与展望</h4>
+              <p>讨论语义解释、中文数据、理论嵌入、多模态融合和 AI 生成视频评价体系。</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="refs">
+          <div class="section-head">
+            <h3>参考来源</h3>
+            <p>下面列出页面中使用的代表性来源，正式写论文时可继续扩展到 60-100 篇文献。</p>
+          </div>
+          <ul class="refs">
+            <li>MovieNet: A Holistic Dataset for Movie Understanding. <a href="https://arxiv.org/abs/2007.10937" target="_blank" rel="noopener">arXiv</a> · <a href="https://movienet.github.io/" target="_blank" rel="noopener">Project</a></li>
+            <li>MovieShots: A Shot Type Dataset based on MovieNet. <a href="https://arxiv.org/abs/2008.03548" target="_blank" rel="noopener">arXiv</a> · <a href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">Project</a></li>
+            <li>CineScale and ShotScale projects. <a href="https://cinescale.github.io/" target="_blank" rel="noopener">CineScale</a> · <a href="https://cinescale.github.io/shotscale/" target="_blank" rel="noopener">ShotScale</a></li>
+            <li>The Anatomy of Video Editing: A Dataset and Benchmark Suite for AI-Assisted Video Editing. <a href="https://arxiv.org/abs/2207.09812" target="_blank" rel="noopener">arXiv</a> · <a href="https://github.com/dawitmureja/AVE" target="_blank" rel="noopener">GitHub</a></li>
+            <li>Film Editing Patterns for virtual cinematographic storytelling. <a href="https://inria.hal.science/hal-01950718v1" target="_blank" rel="noopener">HAL-Inria</a> · <a href="https://dl.acm.org/doi/10.1145/3241057" target="_blank" rel="noopener">ACM</a></li>
+            <li>Distant Viewing: Computational Exploration of Digital Images. <a href="https://direct.mit.edu/books/oa-monograph/5674/Distant-ViewingComputational-Exploration-of" target="_blank" rel="noopener">MIT Press</a> · <a href="https://distantviewing.org/" target="_blank" rel="noopener">Distant Viewing Lab</a></li>
+            <li>MediaFM: The Multimodal AI Foundation for Media Understanding at Netflix. <a href="https://netflixtechblog.com/mediafm-the-multimodal-ai-foundation-for-media-understanding-at-netflix-e8c28df82e2d" target="_blank" rel="noopener">Netflix TechBlog</a></li>
+            <li>CameraBench: Understanding Camera Motion in Videos. <a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">Project</a> · <a href="https://arxiv.org/abs/2504.15376" target="_blank" rel="noopener">arXiv</a></li>
+            <li>ShotBench: Expert-Evaluated Benchmark for Cinematic Language Understanding. <a href="https://arxiv.org/abs/2506.21356" target="_blank" rel="noopener">arXiv</a></li>
+            <li>CineTechBench: Benchmarking Cinematic Technical Understanding and Generation. <a href="https://arxiv.org/abs/2505.15145" target="_blank" rel="noopener">arXiv</a></li>
+            <li>Intelligent Cinematography: a review of AI research for real camera content acquisition for entertainment purposes. <a href="https://link.springer.com/article/10.1007/s10462-024-11089-3" target="_blank" rel="noopener">Springer</a></li>
+            <li>Computational Film Analysis with R. <a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">Online book</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <footer>
+        <p>Prepared as a GitHub Pages review site. Last updated: 2026-07-08.</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
