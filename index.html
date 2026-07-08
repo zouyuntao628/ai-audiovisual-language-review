@@ -540,6 +540,8 @@
         <a href="#outputs">成果矩阵</a>
         <a href="#datasets">数据集与任务</a>
         <a href="#framework">综述框架</a>
+        <a href="#methods">方法谱系</a>
+        <a href="#tasks">研究任务</a>
         <a href="#limits">局限与趋势</a>
         <a href="#outline">论文结构</a>
         <a href="#learning">新手学习</a>
@@ -981,6 +983,126 @@
           </div>
         </section>
 
+        <section id="methods">
+          <div class="section-head">
+            <h3>方法谱系详解</h3>
+            <p>这部分回答“用什么方法研究视听语言”。综述中可以把方法从低成本、可解释的统计分析，逐步推进到深度学习、多模态模型和生成式 AI。</p>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h4>1. 传统统计特征与形式量化</h4>
+              <p>这是最适合作为入门的路径。研究者先把电影切成镜头或段落，再统计镜头长度、平均镜头长度、景别比例、剪辑频率、色彩分布、运动强度和声音密度。这类方法不一定使用深度学习，但能直接服务导演风格、类型片节奏和历史风格变迁研究。</p>
+              <div class="tag-row"><span class="tag">shot length</span><span class="tag">ASL</span><span class="tag">color histogram</span><span class="tag">editing rhythm</span></div>
+              <p style="margin-top:10px;">代表入口：<a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">Computational Film Analysis with R</a>、<a href="https://cinemetrics.lv/" target="_blank" rel="noopener">Cinemetrics</a>。</p>
+            </div>
+            <div class="card">
+              <h4>2. 计算机视觉与镜头元素识别</h4>
+              <p>这一类方法使用图像分类、目标检测、人脸识别、场景识别、光流、运动估计和镜头边界检测等技术，把景别、机位、构图、人物、场景和镜头运动变成可识别标签。它是“AI 视听语言研究”目前最成熟的技术基础。</p>
+              <div class="tag-row"><span class="tag">CNN</span><span class="tag">object detection</span><span class="tag">optical flow</span><span class="tag">shot boundary</span></div>
+              <p style="margin-top:10px;">代表成果：<a href="https://cinescale.github.io/" target="_blank" rel="noopener">CineScale</a>、<a href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">MovieShots</a>、<a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a>。</p>
+            </div>
+            <div class="card">
+              <h4>3. 多模态学习与电影语义建模</h4>
+              <p>电影不是纯视觉文本。多模态方法把画面、对白、字幕、音乐、音效、人物、场景和剧情描述共同建模，用于片段检索、情绪识别、场景理解、人物关系分析和叙事结构分析。它把视听语言从“画面形式”扩展到“声画协同”。</p>
+              <div class="tag-row"><span class="tag">audio-video-text</span><span class="tag">Transformer</span><span class="tag">contrastive learning</span><span class="tag">embeddings</span></div>
+              <p style="margin-top:10px;">代表成果：<a href="https://movienet.github.io/" target="_blank" rel="noopener">MovieNet</a>、<a href="https://netflixtechblog.com/mediafm-the-multimodal-ai-foundation-for-media-understanding-at-netflix-e8c28df82e2d" target="_blank" rel="noopener">Netflix MediaFM</a>。</p>
+            </div>
+            <div class="card">
+              <h4>4. 电影知识规则与约束建模</h4>
+              <p>这一类方法不只依赖数据学习，而是把电影理论、导演经验和剪辑规则形式化。例如轴线关系、正反打、景别递进、人物空间布局、连续性剪辑和镜头组合模式，都可以被建模为规则、约束或可执行的编辑模板。</p>
+              <div class="tag-row"><span class="tag warm">film grammar</span><span class="tag warm">editing pattern</span><span class="tag warm">continuity</span><span class="tag warm">constraints</span></div>
+              <p style="margin-top:10px;">代表成果：<a href="https://inria.hal.science/hal-01950718v1" target="_blank" rel="noopener">Film Editing Patterns</a>、智能摄影和虚拟摄影机研究。</p>
+            </div>
+            <div class="card">
+              <h4>5. 大模型与视觉语言模型评测</h4>
+              <p>视觉语言模型可以回答视频问题、生成描述、做片段检索和解释画面，但它们并不天然懂电影语言。因此近期研究开始构建 cinematic language benchmark，专门测试模型是否理解景别、运动、构图、光线、焦距和叙事性镜头功能。</p>
+              <div class="tag-row"><span class="tag rose">VLM</span><span class="tag rose">video QA</span><span class="tag rose">cinematic language</span><span class="tag rose">benchmark</span></div>
+              <p style="margin-top:10px;">代表成果：<a href="https://vchitect.github.io/ShotBench-project/" target="_blank" rel="noopener">ShotBench</a>、<a href="https://github.com/pris-cv/cinetechbench" target="_blank" rel="noopener">CineTechBench</a>、<a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a>。</p>
+            </div>
+            <div class="card">
+              <h4>6. 生成式 AI 与创作评价</h4>
+              <p>生成式 AI 把研究对象从“分析既有影视文本”扩展到“生成和评价新的视听文本”。这里的关键问题不是画面是否漂亮，而是模型能否保持空间连续性、镜头动机、人物位置、剪辑节奏、声画关系和叙事连贯性。</p>
+              <div class="tag-row"><span class="tag rose">text-to-video</span><span class="tag rose">AI editing</span><span class="tag rose">camera control</span><span class="tag rose">evaluation</span></div>
+              <p style="margin-top:10px;">代表成果：<a href="https://github.com/pris-cv/cinetechbench" target="_blank" rel="noopener">CineTechBench</a>、<a href="https://research.adobe.com/news/project-blink-creating-the-future-of-ai-powered-video-editing/" target="_blank" rel="noopener">Project Blink</a>、AI 辅助剪辑研究。</p>
+            </div>
+          </div>
+          <div class="quote" style="margin-top:16px;">写作建议：方法谱系不要按“模型越来越新”简单排列，而应说明每类方法能回答什么视听语言问题。统计方法回答“形式分布如何变化”，计算机视觉回答“镜头元素是什么”，多模态模型回答“声画文本如何共同表达”，规则系统回答“电影知识如何形式化”，大模型和生成式 AI 回答“机器是否理解并能生成电影语言”。</div>
+        </section>
+
+        <section id="tasks">
+          <div class="section-head">
+            <h3>研究任务详解</h3>
+            <p>这部分回答“具体研究什么”。综述中可以按任务组织文献，让读者清楚每个任务的输入、输出、代表数据集和论文切入点。</p>
+          </div>
+          <div class="panel">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>研究任务</th>
+                    <th>输入与输出</th>
+                    <th>核心问题</th>
+                    <th>代表资源</th>
+                    <th>适合写成的论文小节</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>镜头语言识别</td>
+                    <td>输入单帧、镜头或短视频；输出景别、角度、机位高度、焦距、构图、镜头运动等标签。</td>
+                    <td>AI 能否稳定识别传统拉片中的基础镜头语法？不同模型对细粒度景别和运动是否可靠？</td>
+                    <td><a href="https://cinescale.github.io/" target="_blank" rel="noopener">CineScale</a>、<a href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">MovieShots</a>、<a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a></td>
+                    <td>“镜头层视听语言的自动识别”</td>
+                  </tr>
+                  <tr>
+                    <td>剪辑结构分析</td>
+                    <td>输入完整片段或电影；输出镜头边界、场景边界、镜头长度、剪辑节奏、正反打和转场关系。</td>
+                    <td>镜头之间如何构成叙事节奏？连续性剪辑、交叉剪辑和正反打能否被模型或规则识别？</td>
+                    <td><a href="https://github.com/dawitmureja/AVE" target="_blank" rel="noopener">AVE</a>、<a href="https://cinemetrics.lv/" target="_blank" rel="noopener">Cinemetrics</a>、<a href="https://inria.hal.science/hal-01950718v1" target="_blank" rel="noopener">Film Editing Patterns</a></td>
+                    <td>“从镜头统计到剪辑语法建模”</td>
+                  </tr>
+                  <tr>
+                    <td>声画关系与多模态语义</td>
+                    <td>输入画面、声音、字幕、对白和剧情描述；输出情绪、语义、片段主题、人物关系或声画一致/反差关系。</td>
+                    <td>画面、对白、音乐和字幕如何共同生成意义？多模态模型能否捕捉声画错位、反讽和情绪转折？</td>
+                    <td><a href="https://movienet.github.io/" target="_blank" rel="noopener">MovieNet</a>、<a href="https://netflixtechblog.com/mediafm-the-multimodal-ai-foundation-for-media-understanding-at-netflix-e8c28df82e2d" target="_blank" rel="noopener">MediaFM</a></td>
+                    <td>“多模态视听叙事建模”</td>
+                  </tr>
+                  <tr>
+                    <td>导演风格与作者性分析</td>
+                    <td>输入导演作品集合；输出景别比例、镜头长度分布、色彩倾向、运动镜头比例、人物构图和风格统计。</td>
+                    <td>导演风格能否被形式特征稳定描述？量化统计如何与作者论、类型研究和风格史结合？</td>
+                    <td><a href="https://cinescale.github.io/shotscale/" target="_blank" rel="noopener">ShotScale</a>、<a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">CFA with R</a>、<a href="https://cinemetrics.lv/" target="_blank" rel="noopener">Cinemetrics</a></td>
+                    <td>“导演风格的计算分析”</td>
+                  </tr>
+                  <tr>
+                    <td>计算叙事与数字人文</td>
+                    <td>输入大规模电影、电视、新闻、短视频或档案影像；输出叙事模式、视觉主题、人物/物体共现和文化表征。</td>
+                    <td>大规模影像材料中是否存在可检索的叙事模式？AI 提取的视觉元数据如何进入人文学科解释？</td>
+                    <td><a href="https://distantviewing.org/" target="_blank" rel="noopener">Distant Viewing Lab</a>、<a href="https://github.com/distant-viewing/dvt" target="_blank" rel="noopener">DVT</a></td>
+                    <td>“从 close reading 到 distant viewing”</td>
+                  </tr>
+                  <tr>
+                    <td>AI 辅助拉片与影视教育</td>
+                    <td>输入影视片段；输出镜头表、景别/运动/声音标注、截图、时间轴和初步分析报告。</td>
+                    <td>AI 能否帮助学生和研究者降低拉片成本？自动标注如何与人工解释结合？</td>
+                    <td><a href="https://archive.mpi.nl/tla/elan" target="_blank" rel="noopener">ELAN</a>、<a href="https://www.anvil-software.org/" target="_blank" rel="noopener">ANVIL</a>、<a href="https://www.vian.app/" target="_blank" rel="noopener">VIAN</a>、MovieNet tools</td>
+                    <td>“人机协同的视听语言教学与分析工具”</td>
+                  </tr>
+                  <tr>
+                    <td>生成式视频的电影语言评价</td>
+                    <td>输入 AI 生成视频、生成提示词或模型输出；输出景别控制、镜头运动、构图、光线、空间连续性、叙事连贯性评价。</td>
+                    <td>AI 生成视频是否懂导演调度？评价标准能否从画质扩展到镜头语言、剪辑逻辑和叙事功能？</td>
+                    <td><a href="https://github.com/pris-cv/cinetechbench" target="_blank" rel="noopener">CineTechBench</a>、<a href="https://vchitect.github.io/ShotBench-project/" target="_blank" rel="noopener">ShotBench</a>、<a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a></td>
+                    <td>“生成式 AI 的视听语言能力评价”</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="quote" style="margin-top:16px;">写作建议：研究任务章节最好不要只列任务名。每个任务都要回答四个问题：它分析什么视听元素？输入和输出是什么？有哪些数据集或工具？它对电影学、传播学或数字人文有什么解释价值？</div>
+        </section>
+
         <section id="limits">
           <div class="section-head">
             <h3>局限与未来趋势</h3>
@@ -1017,32 +1139,50 @@
         <section id="outline">
           <div class="section-head">
             <h3>论文结构建议</h3>
-            <p>按照下面结构写，可以兼顾影视理论、AI 方法和综述完整性。</p>
+            <p>按照下面结构写，可以兼顾影视理论、AI 方法和综述完整性。每章都应包含概念解释、代表成果、可引用材料和读者继续学习的入口。</p>
           </div>
           <div class="outline">
             <div class="outline-item">
               <h4>引言</h4>
-              <p>说明传统视听语言研究依赖人工拉片，AI 使大规模视听形式提取与多模态叙事分析成为可能。</p>
+              <p><strong>写作重点：</strong>说明传统视听语言研究主要依赖人工拉片、个案阐释和理论分析，而 AI 使大规模镜头、声音、字幕、人物和剪辑结构的自动提取成为可能。</p>
+              <p><strong>关键内容：</strong>交代研究背景、问题意识、综述范围和核心判断。要明确本文不是“AI 在影视行业的应用综述”，而是讨论 AI 如何让视听语言变成可计算、可分析、可生成和可评价的研究对象。</p>
+              <p><strong>推荐资料：</strong><a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">Computational Film Analysis with R</a> 可作为计算电影分析入门；<a href="https://distantviewing.org/" target="_blank" rel="noopener">Distant Viewing Lab</a> 可帮助理解数字人文语境。</p>
             </div>
             <div class="outline-item">
               <h4>概念界定</h4>
-              <p>定义 AI 视听语言研究，并区分镜头层、剪辑层、声画层和叙事层。</p>
+              <p><strong>写作重点：</strong>定义“AI 视听语言研究”与相邻概念的关系，包括 computational film analysis、distant viewing、movie understanding、cinematic language understanding、intelligent cinematography 和 generative video evaluation。</p>
+              <p><strong>关键内容：</strong>建议把视听语言拆成四层：镜头层、剪辑层、声画层、叙事层。镜头层包括景别、角度、构图、运动；剪辑层包括镜头长度、组接、转场和节奏；声画层包括对白、音乐、音效、字幕和画面关系；叙事层包括人物、场景、情绪、风格和文化意义。</p>
+              <p><strong>推荐资料：</strong><a href="https://direct.mit.edu/books/oa-monograph/5674/Distant-ViewingComputational-Exploration-of" target="_blank" rel="noopener">Distant Viewing</a> 的开放书籍适合建立理论框架；<a href="https://academic.oup.com/dsh/article/34/Supplement_1/i3/5694340" target="_blank" rel="noopener">Distant Viewing 论文</a> 可用于说明视觉元数据和人文学科解释的关系。</p>
             </div>
             <div class="outline-item">
               <h4>数据集与资源</h4>
-              <p>系统梳理 MovieNet、MovieShots、CineScale、AVE、CameraBench、ShotBench 和 CineTechBench。</p>
+              <p><strong>写作重点：</strong>说明该领域已经有足够的数据集、benchmark 和工具资源支撑综述，而不是停留在零散案例。建议用表格比较数据规模、标注类型、任务目标、适用研究问题和局限。</p>
+              <p><strong>关键内容：</strong>MovieNet 支撑长视频和多模态电影理解；MovieShots 支撑景别和镜头运动识别；CineScale / ShotScale 支撑景别、角度和导演风格分析；AVE 支撑剪辑语言和 AI 辅助剪辑；CameraBench、ShotBench、CineTechBench 支撑大模型和生成式视频的电影语言评价。</p>
+              <p><strong>推荐资料：</strong><a href="https://movienet.github.io/" target="_blank" rel="noopener">MovieNet</a>、<a href="https://movienet.github.io/projects/eccv20shot.html" target="_blank" rel="noopener">MovieShots</a>、<a href="https://cinescale.github.io/" target="_blank" rel="noopener">CineScale</a>、<a href="https://github.com/dawitmureja/AVE" target="_blank" rel="noopener">AVE</a>、<a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a>、<a href="https://vchitect.github.io/ShotBench-project/" target="_blank" rel="noopener">ShotBench</a>、<a href="https://github.com/pris-cv/cinetechbench" target="_blank" rel="noopener">CineTechBench</a>。</p>
             </div>
             <div class="outline-item">
               <h4>方法谱系</h4>
-              <p>从传统统计特征、计算机视觉、多模态学习、电影知识规则到大模型与生成式 AI。</p>
+              <p><strong>写作重点：</strong>不要只按技术新旧排序，而要解释每类方法能回答什么视听语言问题。传统统计回答形式分布，计算机视觉回答镜头元素识别，多模态学习回答声画文本关系，电影知识规则回答剪辑语法和导演经验形式化，大模型与生成式 AI 回答理解和生成能力边界。</p>
+              <p><strong>关键内容：</strong>传统统计特征包括镜头长度、ASL、色彩分布和剪辑频率；计算机视觉包括景别、角度、人物、场景和镜头运动识别；多模态学习包括 audio-video-text 建模；电影知识规则包括轴线、正反打、连续性剪辑和镜头组接模式；生成式 AI 包括自动分镜、自动剪辑、镜头运动控制和视频生成评价。</p>
+              <p><strong>推荐资料：</strong><a href="#methods">方法谱系详解</a> 可作为本章展开提纲；<a href="https://cfa-with-r.netlify.app/" target="_blank" rel="noopener">CFA with R</a>、<a href="https://inria.hal.science/hal-01950718v1" target="_blank" rel="noopener">Film Editing Patterns</a>、<a href="https://netflixtechblog.com/mediafm-the-multimodal-ai-foundation-for-media-understanding-at-netflix-e8c28df82e2d" target="_blank" rel="noopener">MediaFM</a> 可分别代表统计、规则和多模态方法。</p>
             </div>
             <div class="outline-item">
               <h4>研究任务</h4>
-              <p>按镜头语言、剪辑语言、声画关系、导演风格、计算叙事和生成视频评价展开。</p>
+              <p><strong>写作重点：</strong>按任务组织文献会比按模型组织更贴近“视听语言”主题。每个任务都应说明输入、输出、核心问题、代表数据集和它对影视研究的解释价值。</p>
+              <p><strong>关键内容：</strong>镜头语言识别关注景别、角度、运动和构图；剪辑结构分析关注镜头边界、镜头长度、节奏和组接；声画关系关注画面、对白、音乐、音效和字幕的协同；导演风格分析关注作者性和类型风格；计算叙事关注大规模影像中的叙事模式；生成视频评价关注 AI 是否具备电影语言能力。</p>
+              <p><strong>推荐资料：</strong><a href="#tasks">研究任务详解</a> 可直接作为论文任务章节框架；<a href="https://github.com/distant-viewing/dvt" target="_blank" rel="noopener">Distant Viewing Toolkit</a>、<a href="https://archive.mpi.nl/tla/elan" target="_blank" rel="noopener">ELAN</a>、<a href="https://www.vian.app/" target="_blank" rel="noopener">VIAN</a> 可用于实际标注和实验设计。</p>
             </div>
             <div class="outline-item">
               <h4>局限与展望</h4>
-              <p>讨论语义解释、中文数据、理论嵌入、多模态融合和 AI 生成视频评价体系。</p>
+              <p><strong>写作重点：</strong>指出 AI 不是替代电影理论，而是为视听语言研究提供新的中介方法。当前模型擅长识别形式，但对叙事功能、审美意义、文化语境和声画反讽的理解仍不稳定。</p>
+              <p><strong>关键内容：</strong>可以从五个方面展开：形式识别强而意义解释弱；数据集偏西方影视和英语材料；电影理论嵌入不足；声音、音乐和字幕的多模态融合仍薄弱；AI 生成视频评价缺少电影语言维度。</p>
+              <p><strong>推荐资料：</strong><a href="https://vchitect.github.io/ShotBench-project/" target="_blank" rel="noopener">ShotBench</a>、<a href="https://github.com/pris-cv/cinetechbench" target="_blank" rel="noopener">CineTechBench</a> 和 <a href="https://linzhiqiu.github.io/papers/camerabench/" target="_blank" rel="noopener">CameraBench</a> 适合支撑“大模型仍不充分理解电影语言”的论点。</p>
+            </div>
+            <div class="outline-item">
+              <h4>结论</h4>
+              <p><strong>写作重点：</strong>回到综述的核心判断：AI 正在推动视听语言研究从个案式人工阐释，走向规模化形式提取、多模态语义建模和人文学科解释相结合的混合范式。</p>
+              <p><strong>关键内容：</strong>结论应避免夸大 AI 能力。更稳妥的表述是：AI 能显著扩展拉片规模、发现形式模式、辅助教学和评价生成视频，但镜头意义、审美价值和文化解释仍需要研究者参与。</p>
+              <p><strong>推荐资料：</strong>可以回扣 <a href="https://distantviewing.org/" target="_blank" rel="noopener">Distant Viewing</a> 的人文解释立场，以及 <a href="https://link.springer.com/article/10.1007/s10462-024-11089-3" target="_blank" rel="noopener">Intelligent Cinematography Review</a> 对智能摄影研究的系统梳理。</p>
             </div>
           </div>
         </section>
